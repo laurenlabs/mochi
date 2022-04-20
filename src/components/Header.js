@@ -2,7 +2,7 @@ import { Component } from "react";
 
 class Header extends Component {
   render() {
-    return <header>Header</header>;
+    return <header>Welcome to Movie Lists</header>;
   }
 }
 
