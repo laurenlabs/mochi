@@ -21,15 +21,8 @@ const MovieList = ({ error, isLoaded, listTitle, list }) => (
 );
 
 MovieList.propTypes = {
-  error: PropTypes.string,
-  isLoaded: PropTypes.bool,
   listTitle: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired
-};
-
-MovieList.defaultProps = {
-  error: "",
-  isLoaded: false,
 };
 
 export default MovieList;

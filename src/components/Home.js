@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
-import Greeting from './Greeting';
-import MovieList from './MovieList';
+import { useEffect, useState } from "react";
+import Greeting from "./Greeting";
+import MovieList from "./MovieList";
 
 function HomePage() {
   const listTitles = ["Popular", "Now Playing", "Top Rated", "Upcoming"];
+  const [listToGet, setListToGet] = useState("popular");
   const [selectedListTitle, setSelectedListTitle] = useState(listTitles[0]);
   const [selectedList, setSelectedList] = useState([]);
   const [popularList, setPopularList] = useState([]);
   const [nowPlayingList, setNowPlayingList] = useState([]);
   const [topRatedList, setTopRatedList] = useState([]);
   const [upcomingList, setUpcomingList] = useState([]);
-  const [listToGet, setListToGet] = useState("popular");
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getMovieList(listToGet);
@@ -19,27 +21,27 @@ function HomePage() {
   const handleClick = (title) => {
     setSelectedListTitle(title);
     checkForList(title);
-};
+  };
 
-const checkForList = (title) => {
-  if (title === "Popular") {
-    popularList.length === 0
-      ? setListToGet("popular")
-      : setSelectedList(popularList);
-  } else if (title === "Now Playing") {
-    nowPlayingList.length === 0
-      ? setListToGet("now_playing")
-      : setSelectedList(nowPlayingList);
-  } else if (title === "Top Rated") {
-    topRatedList.length === 0
-      ? setListToGet("top_rated")
-      : setSelectedList(topRatedList);
-  } else {
-    upcomingList.length === 0
-      ? setListToGet("upcoming")
-      : setSelectedList(upcomingList);
-  }
-};
+  const checkForList = (title) => {
+    if (title === "Popular") {
+      popularList.length === 0
+        ? setListToGet("latest")
+        : setSelectedList(popularList);
+    } else if (title === "Now Playing") {
+      nowPlayingList.length === 0
+        ? setListToGet("now_playing")
+        : setSelectedList(nowPlayingList);
+    } else if (title === "Top Rated") {
+      topRatedList.length === 0
+        ? setListToGet("top_rated")
+        : setSelectedList(topRatedList);
+    } else {
+      upcomingList.length === 0
+        ? setListToGet("upcoming")
+        : setSelectedList(upcomingList);
+    }
+  };
 
   const getMovieList = (listToGet) => {
     fetch(
@@ -50,30 +52,22 @@ const checkForList = (title) => {
         (result) => {
           if (listToGet === "popular") {
             setPopularList(result.results);
-            console.log("setPopularList");
           } else if (listToGet === "top_rated") {
             setTopRatedList(result.results);
-            console.log("setTopRatedList");
           } else if (listToGet === "now_playing") {
             setNowPlayingList(result.results);
-            console.log("setNowPlayingList");
           } else if (listToGet === "upcoming") {
             setUpcomingList(result.results);
-            console.log("setUpcomingList");
           }
-          console.log("setSelectedList");
-
           setSelectedList(result.results);
         },
-        // (error) => {
-        //   this.setState({
-        //     isLoaded: true,
-        //     error,
-        //   });
-        // }
+        (error) => {
+            setHasError(error);
+        },
+        setIsLoading(false)
       );
   };
-       
+
   return (
     <main style={{ maxWidth: "1024px" }}>
       <Greeting />
@@ -89,6 +83,10 @@ const checkForList = (title) => {
           </button>
         ))}
       </div>
+      {hasError
+        ? "There has been an error with your request. Please try again."
+        : null}
+      {isLoading ? `${selectedList} is Loading...` : null}
       <MovieList listTitle={selectedListTitle} list={selectedList} />
     </main>
   );
