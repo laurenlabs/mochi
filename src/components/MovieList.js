@@ -1,44 +1,35 @@
-import React, { Component } from "react";
 import MovieCard from "./shared/MovieCard";
+import React from "react";
+import PropTypes from "prop-types";
 
-class MovieList extends Component {
-  constructor(props) {
-    super(props);
+const MovieList = ({ error, isLoaded, listTitle, list }) => (
+  <div className="list-wrapper">
+    <h3>{listTitle}</h3>
+    <div
+      style={{
+        display: "flex",
+        maxWidth: "100%",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+      }}
+    >
+      {list.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </div>
+  </div>
+);
 
-    this.state = {
-      error: null,
-      isLoaded: false,
-      movies: [],
-    };
-  }
+MovieList.propTypes = {
+  error: PropTypes.string,
+  isLoaded: PropTypes.bool,
+  listTitle: PropTypes.string.isRequired,
+  list: PropTypes.array.isRequired
+};
 
-  render() {
-    const { error, isLoaded, movies } = this.state;
-
-    // if (error) {
-    //   return <p>Error: {error.message}</p>;
-    // } else if (!isLoaded) {
-    //   <p>Loading {listTitle}...</p>;
-    // } else {
-      return (
-        <div className="list-wrapper">
-          <h3>{this.props.listTitle}</h3>
-          <div
-            style={{
-              display: "flex",
-              maxWidth: "100%",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            {movies.map((movie) => (
-              <MovieCard movie={movie}/>
-            ))}
-          </div>
-        </div>
-      );
-    // }
-  }
+MovieList.defaultProps = {
+  error: "",
+  isLoaded: false,
 };
 
 export default MovieList;
