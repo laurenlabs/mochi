@@ -3,12 +3,11 @@ import Greeting from './Greeting';
 import MovieList from './MovieList';
 
 function HomePage() {
-  const listTitles = ["Popular", "Now Playing", "Latest", "Top Rated", "Upcoming"];
+  const listTitles = ["Popular", "Now Playing", "Top Rated", "Upcoming"];
   const [selectedListTitle, setSelectedListTitle] = useState(listTitles[0]);
   const [selectedList, setSelectedList] = useState([]);
   const [popularList, setPopularList] = useState([]);
   const [nowPlayingList, setNowPlayingList] = useState([]);
-  const [latestList, setLatestList] = useState([]);
   const [topRatedList, setTopRatedList] = useState([]);
   const [upcomingList, setUpcomingList] = useState([]);
   const [listToGet, setListToGet] = useState("popular");
@@ -23,7 +22,6 @@ function HomePage() {
 };
 
 const checkForList = (title) => {
-    console.log("checkForList", title);
   if (title === "Popular") {
     popularList.length === 0
       ? setListToGet("popular")
@@ -32,10 +30,6 @@ const checkForList = (title) => {
     nowPlayingList.length === 0
       ? setListToGet("now_playing")
       : setSelectedList(nowPlayingList);
-  } else if (title === "Latest") {
-    latestList.length === 0
-      ? setListToGet("latest")
-      : setSelectedList(latestList);
   } else if (title === "Top Rated") {
     topRatedList.length === 0
       ? setListToGet("top_rated")
@@ -57,9 +51,6 @@ const checkForList = (title) => {
           if (listToGet === "popular") {
             setPopularList(result.results);
             console.log("setPopularList");
-          } else if (listToGet === "latest") {
-            setLatestList(result.results);
-            console.log("setLatestList");
           } else if (listToGet === "top_rated") {
             setTopRatedList(result.results);
             console.log("setTopRatedList");
