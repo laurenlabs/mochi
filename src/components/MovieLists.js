@@ -11,8 +11,6 @@ function MovieLists() {
   const [nowPlayingList, setNowPlayingList] = useState([]);
   const [topRatedList, setTopRatedList] = useState([]);
   const [upcomingList, setUpcomingList] = useState([]);
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getMovieList(listToGet);
@@ -62,9 +60,8 @@ function MovieLists() {
           setSelectedList(result.results);
         },
         (error) => {
-          setHasError(error);
+          console.log(error);
         },
-        setIsLoading(false)
       );
   };
 
@@ -82,10 +79,6 @@ function MovieLists() {
           />
         ))}
       </div>
-      {hasError
-        ? "There has been an error with your request. Please try again."
-        : null}
-      {isLoading ? `${selectedList} is Loading...` : null}
       {selectedList ? (
         <MovieList listTitle={selectedListTitle} list={selectedList} />
       ) : null}
