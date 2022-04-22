@@ -21,7 +21,8 @@ class Greeting extends Component {
   render() {
     return (
       <>
-        <h2>{this.getGreeting()}</h2>
+        <h3>Welcome to Movie Lists</h3>
+        <h4>{this.getGreeting()}</h4>
       </>
     );
   }

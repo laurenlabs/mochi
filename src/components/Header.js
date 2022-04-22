@@ -1,8 +1,13 @@
 import { Component } from "react";
+import Greeting from "./Greeting";
 
 class Header extends Component {
   render() {
-    return <header>Welcome to Movie Lists</header>;
+    return (
+      <header>
+        <Greeting />
+      </header>
+    );
   }
 }
 

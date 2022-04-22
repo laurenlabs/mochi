@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Greeting from "./Greeting";
+import Button from './shared/Button';
 import MovieList from "./MovieList";
 
 function HomePage() {
@@ -69,25 +69,24 @@ function HomePage() {
   };
 
   return (
-    <main style={{ maxWidth: "1024px" }}>
-      <Greeting />
-      <div>
+    <main>
+      <div className="list-button-container">
         {listTitles.map((title) => (
-          <button
+          <Button
             onClick={() => {
               handleClick(title);
             }}
             key={title}
-          >
-            {title}
-          </button>
+            label={title}
+            className="list-button"
+          />
         ))}
       </div>
       {hasError
         ? "There has been an error with your request. Please try again."
         : null}
       {isLoading ? `${selectedList} is Loading...` : null}
-      <MovieList listTitle={selectedListTitle} list={selectedList} />
+      {selectedList ? <MovieList listTitle={selectedListTitle} list={selectedList} /> : null}
     </main>
   );
 }

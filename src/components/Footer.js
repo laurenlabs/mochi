@@ -7,7 +7,11 @@ class Footer extends Component {
   }
 
   render() {
-    return <footer>&copy; {this.getYear()}</footer>;
+    return (
+      <footer>
+        <p>&copy; {this.getYear()}</p>
+      </footer>
+    );
   }
 }
 
