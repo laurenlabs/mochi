@@ -12,40 +12,9 @@
     }
 }
 
-@keyframes rotating {
-    0% {
-        transform: rotate(0deg);
-        border-left-color: #85A314;
-        border-right-color: black;
-        border-bottom-color: black;
-        border-top-color: black;
-    }
-
-    25% {
-        border-left-color: #85A314;
-        border-top-color: #85A314;
-    }
-
-    50% {
-        border-left-color: #85A314;
-        border-right-color: #85A314;
-        border-top-color: #85A314;
-    }
-
-    75% {
-        border-left-color: #85A314;
-        border-right-color: #85A314;
-        border-bottom-color: #85A314;
-        border-top-color: #85A314;
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 footer {
     background-color: #708090;
+    color: #F4EDED;
     display: flex;
     justify-content: center;
     min-height: 48px;
@@ -62,12 +31,13 @@ h4 {
 
 header {
     background-color: #708090;
-    width: 100%;
+    color: #F4EDED;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     justify-items: center;
+    width: 100%;
 }
 
 main {
@@ -86,11 +56,10 @@ main {
 }
 
 .list-button {
-    outline: none;
     height: 48px;
     text-align: center;
     border-radius: 48px;
-    background: #fff;
+    background: #F4EDED;
     border: 2px solid #010001;
     cursor: pointer;
     position: relative !important;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from './shared/Button';
 import MovieList from "./MovieList";
 
-function HomePage() {
+function MovieLists() {
   const listTitles = ["Popular", "Now Playing", "Top Rated", "Upcoming"];
   const [listToGet, setListToGet] = useState("popular");
   const [selectedListTitle, setSelectedListTitle] = useState(listTitles[0]);
@@ -62,7 +62,7 @@ function HomePage() {
           setSelectedList(result.results);
         },
         (error) => {
-            setHasError(error);
+          setHasError(error);
         },
         setIsLoading(false)
       );
@@ -86,9 +86,11 @@ function HomePage() {
         ? "There has been an error with your request. Please try again."
         : null}
       {isLoading ? `${selectedList} is Loading...` : null}
-      {selectedList ? <MovieList listTitle={selectedListTitle} list={selectedList} /> : null}
+      {selectedList ? (
+        <MovieList listTitle={selectedListTitle} list={selectedList} />
+      ) : null}
     </main>
   );
 }
 
-export default HomePage;
+export default MovieLists;
