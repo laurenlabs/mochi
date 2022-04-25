@@ -24,7 +24,7 @@ function MovieLists() {
   const checkForList = (title) => {
     if (title === "Popular") {
       popularList.length === 0
-        ? setListToGet("latest")
+        ? setListToGet("popular")
         : setSelectedList(popularList);
     } else if (title === "Now Playing") {
       nowPlayingList.length === 0

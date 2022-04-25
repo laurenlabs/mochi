@@ -22,6 +22,7 @@ footer {
 }
 
 h3 {
+    margin-top: 48px;
     margin-bottom: 0;
 }
 
@@ -45,7 +46,6 @@ main {
     flex-direction: column;
     align-items: center;
     width: 100%;
-
 }
 
 .App {
@@ -70,7 +70,7 @@ main {
 .button:hover {
     opacity: 1;
     animation-name: hoverAnimation;
-    animation-duration: 250ms;
+    animation-duration: 500ms;
 }
 
 .list-button-container {
@@ -101,7 +101,7 @@ main {
     justify-content: space-around;
     width: 100%;
     max-width: 100%;
-    max-width: 1024px;
+    max-width: 1324px;
     padding: 24px 0;
     margin: 0 auto;
 }
@@ -123,8 +123,14 @@ main {
     flex-grow: 1;
 }
 
+.movie-details p {
+    margin: 0;
+    padding-bottom: 8px;
+}
+
 .movie-title {
     font-weight: bold;
+    color: #FEA82F;
 }
 
 
